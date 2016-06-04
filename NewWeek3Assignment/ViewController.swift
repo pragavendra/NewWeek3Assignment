@@ -9,16 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var messageView: UIView!
-    
-    var messageOriginalCenter: CGPoint!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        scrollView.contentSize = CGSize(width: 320, height: 1000)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,18 +21,7 @@ class ViewController: UIViewController {
     }
 
 
-    @IBAction func didPanMessage(sender: UIPanGestureRecognizer) {
-        let translation = sender.translationInView(view)
-        if sender.state == UIGestureRecognizerState.Began {
-            messageOriginalCenter = messageView.center
-            
-        } else if sender.state == UIGestureRecognizerState.Changed {
-            messageView.center = CGPoint(x: messageOriginalCenter.x + translation.x, y: messageOriginalCenter.y)
-            
-        } else if sender.state == UIGestureRecognizerState.Ended {
-            
-        }
 
     }
-}
+
 
