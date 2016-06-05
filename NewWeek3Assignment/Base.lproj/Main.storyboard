@@ -21,7 +21,7 @@
                                         <rect key="frame" x="0.0" y="-1" width="320" height="570"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reschedule" id="J3r-MO-Jqn">
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reschedule" id="J3r-MO-Jqn">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="570"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
@@ -63,7 +63,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" id="zCF-1j-qLA" userLabel="BackgroundView">
+                                    <view opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" id="zCF-1j-qLA" userLabel="BackgroundView">
                                         <rect key="frame" x="3" y="133" width="315" height="85"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,6 +95,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="QU9-ur-ut4" userLabel="MessgeView">
                                         <rect key="frame" x="-9" y="133" width="321" height="307"/>
@@ -126,6 +127,7 @@
                         <outlet property="listIconView" destination="PYb-ce-S2O" id="Dhw-2D-wZh"/>
                         <outlet property="listView" destination="hcL-O3-sZm" id="MyP-E5-UWB"/>
                         <outlet property="messageView" destination="QU9-ur-ut4" id="FcZ-e5-as7"/>
+                        <outlet property="rescheduleImageView" destination="J3r-MO-Jqn" id="jC3-0v-2b7"/>
                         <outlet property="rescheduleView" destination="gRE-yJ-BGE" id="aNS-i5-V6Y"/>
                         <outlet property="scrollView" destination="0P8-7d-Kp6" id="N6d-fG-cpd"/>
                     </connections>
