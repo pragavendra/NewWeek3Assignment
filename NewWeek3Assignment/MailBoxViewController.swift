@@ -19,6 +19,9 @@ class MailBoxViewController: UIViewController {
     @IBOutlet weak var IconUIView: UIView!
     @IBOutlet weak var listIconView: UIImageView!
     @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var leftIconView: UIView!
+    @IBOutlet weak var archiveImage: UIImageView!
+    @IBOutlet weak var deleteImage: UIImageView!
     
     var messageOriginalCenter: CGPoint!
     var messageLeftOffset: CGFloat!
@@ -27,6 +30,9 @@ class MailBoxViewController: UIViewController {
     
     var iconOriginalCenter: CGPoint!
     var iconOffset: CGPoint!
+    
+    var iconLeftOriginalCenter: CGPoint!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,84 +58,123 @@ class MailBoxViewController: UIViewController {
             if sender.state == UIGestureRecognizerState.Began {
                 messageOriginalCenter = messageView.center
                 iconOriginalCenter = IconUIView.center
+                iconLeftOriginalCenter = leftIconView.center
+                
+               // print( "translation began \(translation)")
+               // print( "velocity began \(velocity)")
                 
                 backgroundView.backgroundColor = UIColor.grayColor()
                 listView.alpha = 1
                 messageView.alpha = 1
                 backgroundView.alpha = 1
-                rescheduleView.alpha = 0
-                listIconView.alpha = 0
+                if velocity.x < 0 {
+                    rescheduleView.alpha = 0
+                    listIconView.alpha = 0
+                }
+                else {
+                    leftIconView.alpha = 0
+                    archiveImage.alpha = 0
+                    deleteImage.alpha = 0
+                    
+                }
                 
             } else if sender.state == UIGestureRecognizerState.Changed {
                 messageView.center = CGPoint(x: messageOriginalCenter.x + translation.x, y: messageOriginalCenter.y)
                IconUIView.center = CGPoint(x: iconOriginalCenter.x + translation.x + 40 , y: iconOriginalCenter.y)
+                leftIconView.center = CGPoint(x: iconLeftOriginalCenter.x + translation.x - 45 , y: iconLeftOriginalCenter.y)
 
-
-                if messageView.center.x < -100{
-                    print( "messagecenter \(messageView.center.x)")
-                    backgroundView.backgroundColor = UIColor.brownColor()
-                    listView.alpha = 1
-                    messageView.alpha = 1
-                    backgroundView.alpha = 1
-                    rescheduleView.alpha = 0
-                    listIconView.alpha = 1
-                    iconImageView.alpha = 0
+                if velocity.x < 0 {
+                    //panning left
+                    print( "velocity panning left  \(messageView.center)")
+                    if messageView.center.x < -100{
+                        //print( "messagecenter \(messageView.center.x)")
+                        backgroundView.backgroundColor = UIColor.brownColor()
+                        listView.alpha = 1
+                        messageView.alpha = 1
+                        backgroundView.alpha = 1
+                        rescheduleView.alpha = 0
+                        listIconView.alpha = 1
+                        iconImageView.alpha = 0
                     
                     
-                }
-                else  if messageView.center.x < 90 {
-                    print( "messagecenter inside 90 \(messageView.center.x)")
-                    listView.alpha = 1
-                    messageView.alpha = 1
-                    backgroundView.alpha = 1
-                    rescheduleView.alpha = 0
-                     backgroundView.backgroundColor = UIColor.yellowColor()
+                    }
+                    else  if messageView.center.x < 90 {
+                        // print( "messagecenter inside 90 \(messageView.center.x)")
+                        listView.alpha = 1
+                        messageView.alpha = 1
+                        backgroundView.alpha = 1
+                        rescheduleView.alpha = 0
+                        backgroundView.backgroundColor = UIColor.yellowColor()
                     
             
-                }
-                else  if messageView.center.x < 100 {
-                    print( "messagecenter inside 100 \(messageView.center.x)")
+                    }
+                    else  if messageView.center.x < 100 {
+                        // print( "messagecenter inside 100 \(messageView.center.x)")
 
-                    listView.alpha = 0
-                    messageView.alpha = 0
-                    backgroundView.alpha = 0
-                    rescheduleView.alpha = 1
-                    listIconView.alpha = 0
-                    iconImageView.alpha = 1
-                    backgroundView.backgroundColor = UIColor.yellowColor()
+                        listView.alpha = 0
+                        messageView.alpha = 0
+                        backgroundView.alpha = 0
+                        rescheduleView.alpha = 1
+                        listIconView.alpha = 0
+                        iconImageView.alpha = 1
+                        backgroundView.backgroundColor = UIColor.yellowColor()
                     
                     
-                }
-                else {
-                    print( "messagecenter default  \(messageView.center.x)")
-                    listView.alpha = 1
-                    messageView.alpha = 1
-                    backgroundView.alpha = 1
-                    rescheduleView.alpha = 0
-                    IconUIView.alpha = 1
-                    listIconView.alpha = 0
-                    iconImageView.alpha = 1
-                       backgroundView.backgroundColor = UIColor.grayColor()
+                    }
+                    else {
+                        // print( "messagecenter default  \(messageView.center.x)")
+                        listView.alpha = 1
+                            messageView.alpha = 1
+                        backgroundView.alpha = 1
+                        rescheduleView.alpha = 0
+                        IconUIView.alpha = 1
+                        listIconView.alpha = 0
+                        iconImageView.alpha = 1
+                        backgroundView.backgroundColor = UIColor.grayColor()
+                    }
+                } else {
+                    //panning right
+                    print( "velocity panning right  \(messageView.center)")
+                    if messageView.center.x > 410  {
+                        backgroundView.backgroundColor = UIColor.redColor()
+                        leftIconView.alpha = 1
+                        archiveImage.alpha = 0
+                        deleteImage.alpha = 1
+
+                    }
+                    else if messageView.center.x > 210   {
+                        backgroundView.backgroundColor = UIColor.greenColor()
+                        leftIconView.alpha = 1
+                        archiveImage.alpha = 1
+                        deleteImage.alpha = 0
+                        
+                    } else {
+
+                    }
+
+                    
                 }
                 
             } else if sender.state == UIGestureRecognizerState.Ended {
                 if velocity.x > 0 {
                     UIView.animateWithDuration(0.3, animations: { () -> Void in
                         self.messageView.center = self.messageLeft
+                        self.leftIconView.center = CGPoint(x: 0,y: self.iconLeftOriginalCenter.y)
                     })
                 } else {
                     UIView.animateWithDuration(0.3, animations: { () -> Void in
                         self.messageView.center = self.messageRight
                     })
+                    IconUIView.center = CGPoint(x: 320,y: iconOriginalCenter.y)
+                    listView.alpha = 1
+                    messageView.alpha = 1
+                    backgroundView.alpha = 1
+                    rescheduleView.alpha = 0
+                    IconUIView.alpha = 0
+                    listIconView.alpha = 0
+                    iconImageView.alpha = 0
                 }
-                IconUIView.center = CGPoint(x: 320,y: iconOriginalCenter.y)
-                listView.alpha = 1
-                messageView.alpha = 1
-                backgroundView.alpha = 1
-                rescheduleView.alpha = 0
-                IconUIView.alpha = 0
-                listIconView.alpha = 0
-                iconImageView.alpha = 0
+               
                 
             }
 
