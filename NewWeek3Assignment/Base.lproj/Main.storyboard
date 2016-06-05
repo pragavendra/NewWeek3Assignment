@@ -17,6 +17,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" id="gRE-yJ-BGE" userLabel="RescheduleView">
+                                        <rect key="frame" x="0.0" y="-1" width="320" height="570"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reschedule" id="J3r-MO-Jqn">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="570"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <view contentMode="scaleToFill" id="hcL-O3-sZm" userLabel="ListView">
                                         <rect key="frame" x="0.0" y="-10" width="320" height="578"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -43,6 +54,12 @@
                                     <view contentMode="scaleToFill" id="zCF-1j-qLA" userLabel="BackgroundView">
                                         <rect key="frame" x="3" y="133" width="315" height="85"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="later_icon" id="PYb-ce-S2O" userLabel="Icon View">
+                                                <rect key="frame" x="274" y="26" width="33" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="QU9-ur-ut4" userLabel="MessgeView">
@@ -75,7 +92,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="zCF-1j-qLA" id="aqA-Ns-ok1"/>
+                        <outlet property="iconView" destination="EzD-su-B6Q" id="maO-ft-U6u"/>
+                        <outlet property="listView" destination="hcL-O3-sZm" id="MyP-E5-UWB"/>
                         <outlet property="messageView" destination="QU9-ur-ut4" id="FcZ-e5-as7"/>
+                        <outlet property="rescheduleView" destination="gRE-yJ-BGE" id="aNS-i5-V6Y"/>
                         <outlet property="scrollView" destination="0P8-7d-Kp6" id="N6d-fG-cpd"/>
                     </connections>
                 </viewController>
@@ -92,8 +113,10 @@
     <resources>
         <image name="feed" width="320" height="1202"/>
         <image name="help_label" width="320" height="37"/>
+        <image name="later_icon" width="25" height="25"/>
         <image name="message" width="320" height="86"/>
         <image name="nav" width="320" height="65"/>
+        <image name="reschedule" width="320" height="568"/>
         <image name="search" width="320" height="42"/>
     </resources>
 </document>
