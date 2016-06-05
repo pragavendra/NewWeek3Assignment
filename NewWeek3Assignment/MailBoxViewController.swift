@@ -15,12 +15,18 @@ class MailBoxViewController: UIViewController {
     @IBOutlet weak var listView: UIView!
     @IBOutlet weak var rescheduleView: UIView!
     @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var iconView: UIImageView!
+    @IBOutlet weak var iconView: UIImageView! //message view
+    @IBOutlet weak var IconUIView: UIView!
+    @IBOutlet weak var listIconView: UIImageView!
+    @IBOutlet weak var iconImageView: UIImageView!
     
     var messageOriginalCenter: CGPoint!
     var messageLeftOffset: CGFloat!
     var messageLeft: CGPoint!
     var messageRight: CGPoint!
+    
+    var iconOriginalCenter: CGPoint!
+    var iconOffset: CGPoint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,14 +51,20 @@ class MailBoxViewController: UIViewController {
             
             if sender.state == UIGestureRecognizerState.Began {
                 messageOriginalCenter = messageView.center
+                iconOriginalCenter = IconUIView.center
+                
                 backgroundView.backgroundColor = UIColor.grayColor()
                 listView.alpha = 1
                 messageView.alpha = 1
                 backgroundView.alpha = 1
                 rescheduleView.alpha = 0
+                listIconView.alpha = 0
                 
             } else if sender.state == UIGestureRecognizerState.Changed {
                 messageView.center = CGPoint(x: messageOriginalCenter.x + translation.x, y: messageOriginalCenter.y)
+               IconUIView.center = CGPoint(x: iconOriginalCenter.x + translation.x + 40 , y: iconOriginalCenter.y)
+
+
                 if messageView.center.x < -100{
                     print( "messagecenter \(messageView.center.x)")
                     backgroundView.backgroundColor = UIColor.brownColor()
@@ -60,6 +72,9 @@ class MailBoxViewController: UIViewController {
                     messageView.alpha = 1
                     backgroundView.alpha = 1
                     rescheduleView.alpha = 0
+                    listIconView.alpha = 1
+                    iconImageView.alpha = 0
+                    
                     
                 }
                 else  if messageView.center.x < 90 {
@@ -74,10 +89,13 @@ class MailBoxViewController: UIViewController {
                 }
                 else  if messageView.center.x < 100 {
                     print( "messagecenter inside 100 \(messageView.center.x)")
+
                     listView.alpha = 0
                     messageView.alpha = 0
                     backgroundView.alpha = 0
                     rescheduleView.alpha = 1
+                    listIconView.alpha = 0
+                    iconImageView.alpha = 1
                     backgroundView.backgroundColor = UIColor.yellowColor()
                     
                     
@@ -88,6 +106,9 @@ class MailBoxViewController: UIViewController {
                     messageView.alpha = 1
                     backgroundView.alpha = 1
                     rescheduleView.alpha = 0
+                    IconUIView.alpha = 1
+                    listIconView.alpha = 0
+                    iconImageView.alpha = 1
                        backgroundView.backgroundColor = UIColor.grayColor()
                 }
                 
@@ -101,10 +122,14 @@ class MailBoxViewController: UIViewController {
                         self.messageView.center = self.messageRight
                     })
                 }
+                IconUIView.center = CGPoint(x: 320,y: iconOriginalCenter.y)
                 listView.alpha = 1
                 messageView.alpha = 1
                 backgroundView.alpha = 1
                 rescheduleView.alpha = 0
+                IconUIView.alpha = 0
+                listIconView.alpha = 0
+                iconImageView.alpha = 0
                 
             }
 
