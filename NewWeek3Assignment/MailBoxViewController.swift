@@ -132,21 +132,21 @@ class MailBoxViewController: UIViewController {
                     }
                     else  if messageView.center.x < 90 {
                         // print( "messagecenter inside 90 \(messageView.center.x)")
-                        listView.alpha = 1
+                       /* listView.alpha = 1
                         messageView.alpha = 1
                         backgroundView.alpha = 1
                         rescheduleView.alpha = 0
-                        backgroundView.backgroundColor = UIColor.yellowColor()
+                        backgroundView.backgroundColor = UIColor.yellowColor()*/
                     
             
                     }
                     else  if messageView.center.x < 100 {
                         // print( "messagecenter inside 100 \(messageView.center.x)")
 
-                        listView.alpha = 0
-                        messageView.alpha = 0
-                        backgroundView.alpha = 0
-                        //rescheduleView.alpha = 1
+                        listView.alpha = 1
+                        messageView.alpha = 1
+                        backgroundView.alpha = 1
+                        rescheduleView.alpha = 0
                         listIconView.alpha = 0
                         iconImageView.alpha = 1
 
@@ -201,7 +201,7 @@ class MailBoxViewController: UIViewController {
                 
             } else if sender.state == UIGestureRecognizerState.Ended {
                 print( "messagecenter inside ended first \(messageView.center)")
-                if messageView.center.x < 100 {
+                if messageView.center.x < 100 &&  messageView.center.x > -135 {
                     print( "messagecenter inside ended \(messageView.center)")
                     
                     listView.alpha = 0
@@ -232,6 +232,9 @@ class MailBoxViewController: UIViewController {
                         IconUIView.alpha = 0
                         listIconView.alpha = 0
                         iconImageView.alpha = 0
+                        archiveImage.alpha = 0
+                        deleteImage.alpha = 0
+
                     }//velocity
                
                 }//check <100
